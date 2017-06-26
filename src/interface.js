@@ -10,6 +10,7 @@ export { ZalgoPromise as Promise } from 'zalgo-promise';
 
 export { rest } from './api';
 export { Button } from './components';
+export { CartButton } from './components';
 export { setup } from './setup';
 export { config, ENV, USERS, SOURCE } from './config';
 export { request, isEligible, isWebView, forceIframe } from './lib';
@@ -32,14 +33,17 @@ if (__LEGACY_SUPPORT__) {
 
 import { isPayPalDomain } from './lib';
 import { Checkout as CheckoutComponent } from './components';
+import { CartComponent as MiniCartComponent } from './components';
 import * as xcomponent from 'xcomponent/src';
 
 export let Checkout;
+export let CartComponent;
 export let PayPalCheckout;
 export let destroyAll;
 
 if (isPayPalDomain() || __TEST__) {
     Checkout = CheckoutComponent;
+    CartComponent = MiniCartComponent;
     PayPalCheckout = CheckoutComponent;
     destroyAll = xcomponent.destroyAll;
 }
