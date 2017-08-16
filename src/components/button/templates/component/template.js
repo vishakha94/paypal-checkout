@@ -43,7 +43,7 @@ function getSecondBtnHtml (color : string) : string {
     let labelText = expandContentText(contentText, { color: venmoBtnColor, logoColor: venmoLogoColor });
 
     return `
-    <div class="paypal-button-content paypal-color-${venmoBtnColor} venmo-logo-color-${venmoLogoColor}">
+    <div class="paypal-button-content paypal-color-${venmoBtnColor} venmo-logo-color-${venmoLogoColor} venmo-animation">
         ${ labelText }
     </div>
     `;
@@ -83,7 +83,7 @@ export function componentTemplate({ props } : { props : Object }) : string {
 
     let contentText = enableDualBtn ? getButtonConfig(label, 'defaultDualLabel') : (getButtonConfig(label, 'label') || content[label]);
 
-    let allowTagline = (branding && !fundingicons);
+    let allowTagline = (branding && !fundingicons && secondrender);
     let taglineKey = enableDualBtn ? 'dual_tagline' : 'tagline';
     let tagline =  allowTagline ? getButtonConfig(label, taglineKey) : false;
     let tagcontent   = enableDualBtn ? (content[getButtonConfig(label, 'defaultDualTagKey')] || '') : (content[getButtonConfig(label, 'tagkey')] || '');
@@ -104,7 +104,7 @@ export function componentTemplate({ props } : { props : Object }) : string {
             </style>
 
             <div id="paypal-button" class="paypal-button paypal-style-${ label } paypal-branding-${ branding ? 'true' : 'false' } paypal-dual-${ enableDualBtn ? 'true' : 'false' } paypal-shape-${ shape }" type="submit" role="button" tabindex="0">
-                <div class="paypal-button-content paypal-color-${ color } paypal-logo-color-${logoColor}">
+                <div class="paypal-button-content paypal-animation paypal-color-${ color } paypal-logo-color-${logoColor}">
                     ${ labelText }
                 </div>
                 

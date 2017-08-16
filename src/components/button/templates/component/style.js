@@ -456,6 +456,24 @@ export let componentStyle = `
         display: inline-block;
         margin-right: 2px;
     }
+    
+    .paypal-button .paypal-button-content.paypal-animation {
+        -webkit-transition-property: width ;
+        -webkit-transition-duration: 1s;
+        -webkit-transition-timing-function: ease-out;
+        transition-property: width ;
+        transition-duration: 1s;
+        transition-timing-function: ease-out;
+    }
+
+    .paypal-button .paypal-button-content.venmo-animation {
+        -webkit-transition-property: left;
+        -webkit-transition-duration: 0.5s;
+        -webkit-transition-timing-function: ease-out;
+        transition-property: left;
+        transition-duration: 0.5s;
+        transition-timing-function: ease-out;
+    }
 
 
 
