@@ -122,7 +122,7 @@ function regexMap<T>(str : string, regex : RegExp, handler : () => T) : Array<T>
     return results;
 }
 
-export function render(template : string, renderers : { [string] : (string) => ?(JsxHTMLNode | Array<JsxHTMLNode>) }) : JsxHTMLNode {
+export function render(template : string, label? : string, renderers : { [string] : (string) => ?(JsxHTMLNode | Array<JsxHTMLNode>) }) : JsxHTMLNode {
 
     // eslint-disable-next-line security/detect-unsafe-regex
     let nodes = regexMap(template, /\{\s*([a-z]+)(?::\s*([^} ]+))?\s*\}|([^${}]+)/g, (match, type, value, text) => {
@@ -138,7 +138,7 @@ export function render(template : string, renderers : { [string] : (string) => ?
                 return text;
             }
 
-            return renderers.text(text);
+            return renderers.text(text, label);
         } else {
             return text;
         }

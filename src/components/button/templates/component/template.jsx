@@ -86,15 +86,18 @@ function renderFundingIcons({ cards, fundingicons } :
     return <div class={ `${ CLASS.FUNDINGICONS }` }>{ renderCards({ cards, button: true }) }</div>;
 }
 
-function renderContent(text : string, { locale, color, branding, logoColor, funding, env, cards } :
-    { locale : LocaleType, color : string, branding? : boolean, logoColor? : string, funding? : FundingSelection, env : string, cards : Array<string> }) : JsxHTMLNode {
+function renderContent(text : string, { contentLabel, locale, color, branding, logoColor, funding, env, cards } :
+    { contentLabel?: string, locale : LocaleType, color : string, branding? : boolean, logoColor? : string, funding? : FundingSelection, env : string, cards : Array<string> }) : JsxHTMLNode {
 
     let content = getLocaleContent(locale);
 
-    return render(text, {
+    return render(text, contentLabel, {
 
-        text(value : string) : JsxHTMLNode {
-            return <span class={ CLASS.TEXT }>{ value }</span>;
+        text(value : string, label : string ) : JsxHTMLNode {
+
+            let className = label === 'installment' ? `${ CLASS.TEXT } ${ CLASS.WRAPTEXT }` : `${ CLASS.TEXT }`;
+            return <span class={ className }>{ value }</span>;
+
         },
 
         logo(name : string) : ?JsxHTMLNode {
@@ -131,7 +134,8 @@ function renderContent(text : string, { locale, color, branding, logoColor, fund
                 throw new Error(`Could not find content ${ name } for ${ locale.lang }_${ locale.country }`);
             }
 
-            return renderContent(contentString || '', { locale, color, branding, logoColor, funding, env, cards });
+            let contentLabel = name;
+            return renderContent(contentString || '', { contentLabel, locale, color, branding, logoColor, funding, env, cards });
         },
 
         cards() : Array<JsxHTMLNode> {
@@ -148,8 +152,8 @@ function renderContent(text : string, { locale, color, branding, logoColor, fund
     });
 }
 
-function renderButton({ label, color, locale, branding, multiple, layout, shape, source, funding, i, env, cards } :
-    { label : string, color : string, branding : boolean, locale : Object, multiple : boolean, layout : string, shape : string, funding : FundingSelection, source : FundingSource, i : number, env : string, cards : Array<string> }) : JsxHTMLNode {
+function renderButton({ label, color, locale, branding, multiple, layout, shape, source, funding, i, env, cards, installmentNum } :
+    { label : string, color : string, branding : boolean, locale : Object, multiple : boolean, layout : string, shape : string, funding : FundingSelection, source : FundingSource, i : number, env : string, cards : Array<string>, installmentNum : string }) : JsxHTMLNode {
 
     let logoColor = getButtonConfig(label, 'logoColors')[color];
 
@@ -157,7 +161,10 @@ function renderButton({ label, color, locale, branding, multiple, layout, shape,
         ? getButtonConfig(label, 'logoLabel')
         : getButtonConfig(label, 'label');
 
-    contentText = renderContent(contentText, { locale, color, branding, logoColor, funding, env, cards });
+     contentText = installmentNum ? contentText.replace('generic', 'dynamic') : contentText ;
+
+    let contentLabel = label;
+    contentText = renderContent(contentText, { contentLabel, locale, color, branding, logoColor, funding, env, cards });
 
     return (
         <div
@@ -243,6 +250,7 @@ export function componentTemplate({ props } : { props : Object }) : string {
         tagline, funding, layout, sources, multiple,
         fundingicons, env, height, cards } = normalizeProps(props);
 
+    let installmentNum = '4';
     let buttonNodes = determineButtons({ label, color, sources, multiple })
         .map((button, i) => renderButton({
             label:   button.label,
@@ -256,7 +264,8 @@ export function componentTemplate({ props } : { props : Object }) : string {
             branding,
             layout,
             shape,
-            cards
+            cards,
+            installmentNum
         }));
 
     let taglineNode     = renderTagline({ label, tagline, color, locale, multiple, env, cards });

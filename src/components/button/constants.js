@@ -24,15 +24,16 @@ type BUTTON_LABEL_ENUM =
     'card' | 'buynow' | 'venmo' | 'ideal' | 'elv'>;
 
 export const BUTTON_LABEL : BUTTON_LABEL_ENUM = {
-    PAYPAL:   'paypal',
-    CHECKOUT: 'checkout',
-    PAY:      'pay',
-    CREDIT:   'credit',
-    CARD:     'card',
-    BUYNOW:   'buynow',
-    VENMO:    'venmo',
-    IDEAL:    'ideal',
-    ELV:      'elv'
+    PAYPAL:      'paypal',
+    CHECKOUT:    'checkout',
+    PAY:         'pay',
+    CREDIT:      'credit',
+    CARD:        'card',
+    BUYNOW:      'buynow',
+    INSTALLMENT: 'installment',
+    VENMO:       'venmo',
+    IDEAL:       'ideal',
+    ELV:         'elv'
 };
 
 type BUTTON_COLOR_ENUM =

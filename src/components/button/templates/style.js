@@ -28,6 +28,8 @@ export const BUTTON_STYLE = {
         maxWidth:        200,
         minHeight:       25,
         maxHeight:       55,
+        wrapTextWidth:   5,
+        paddingLeft:     6,
         allowFunding:    true,
         allowTagline:    true
     },
@@ -39,6 +41,7 @@ export const BUTTON_STYLE = {
         maxWidth:          300,
         minHeight:         35,
         maxHeight:         55,
+        wrapTextWidth:     6,
         allowFunding:      true,
         allowTagline:      true
     },
@@ -50,18 +53,22 @@ export const BUTTON_STYLE = {
         maxWidth:          500,
         minHeight:         40,
         maxHeight:         55,
+        wrapTextWidth:     6,
+        paddingLeft:       8,
         allowFunding:      true,
         allowTagline:      true
     },
 
     [ BUTTON_SIZE.HUGE ]: {
-        defaultWidth:  500,
-        defaultHeight: 55,
-        minWidth:      500,
-        maxWidth:      750,
-        minHeight:     55,
-        maxHeight:     55,
-        allowFunding:  true,
-        allowTagline:  true
+        defaultWidth:      500,
+        defaultHeight:     55,
+        minWidth:          500,
+        maxWidth:          750,
+        minHeight:         55,
+        maxHeight:         55,
+        wrapTextWidth:     6,
+        paddingLeft:       10,
+        allowFunding:      true,
+        allowTagline:      true
     }
 };

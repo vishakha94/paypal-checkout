@@ -130,6 +130,19 @@ export const BUTTON_CONFIG : ButtonConfig = {
         allowSecondaryHorizontal: false
     },
 
+    [ BUTTON_LABEL.INSTALLMENT ]: {
+        label:     `{ content: installment_generic }`,
+        logoLabel: `{ logo: ${ BUTTON_LOGO.PP } } { logo: ${ BUTTON_LOGO.PAYPAL } }`,
+
+        allowPrimary: true,
+
+        allowPrimaryVertical:   false,
+        allowPrimaryHorizontal: true,
+
+        allowSecondaryVertical:   false,
+        allowSecondaryHorizontal: false
+    },
+
     [ BUTTON_LABEL.PAY ]: {
         label:     `{ content: pay }`,
         logoLabel: `{ logo: ${ BUTTON_LOGO.PP } } { logo: ${ BUTTON_LOGO.PAYPAL } }`,
@@ -345,6 +358,7 @@ export const LABEL_TO_FUNDING = {
     [ BUTTON_LABEL.CHECKOUT ]: FUNDING.PAYPAL,
     [ BUTTON_LABEL.PAY ]:      FUNDING.PAYPAL,
     [ BUTTON_LABEL.BUYNOW ]:   FUNDING.PAYPAL,
+    [ BUTTON_LABEL.INSTALLMENT ]:   FUNDING.PAYPAL,
     [ BUTTON_LABEL.CARD ]:     FUNDING.CARD,
     [ BUTTON_LABEL.CREDIT ]:   FUNDING.CREDIT,
     [ BUTTON_LABEL.VENMO ]:    FUNDING.VENMO,
