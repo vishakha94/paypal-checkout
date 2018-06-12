@@ -314,6 +314,7 @@ function createOrder(env : string, client : { [key : string] : string }, payment
         if (meta && meta.partner_attribution_id) {
             headers['PayPal-Partner-Attribution-Id'] = meta.partner_attribution_id;
         }
+        console.log('The orderAPiUrl: ', config.orderApiUrls[env]);
 
         return request({
             method: `post`,
