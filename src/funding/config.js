@@ -42,8 +42,7 @@ export const FUNDING_CONFIG = {
     },
 
     [ FUNDING.CARD ]: {
-        default: true,
-
+        default: (typeof __paypal_checkout__ === "undefined" ? true : __paypal_checkout__.serverConfig.paypalMerchantConfiguration.creditCard.isPayPalBranded),
         allowHorizontal: false,
         allowVertical:   true
     },

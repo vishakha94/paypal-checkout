@@ -8,6 +8,17 @@ module.exports = {
     'buttons': {
         entry:           './src/index',
         staticNamespace: '__paypal_checkout__',
+
+        // Set up a graphql config query
+        configQuery: `
+            clientConfiguration {
+                paypalMerchantConfiguration(merchantId: $clientID, locale: $country) {
+                    creditCard {                                                             
+                        isPayPalBranded                                                    
+                        supportedCardBrands                                                    
+                    }    
+                }
+            }`,
         globals
     }
 };
